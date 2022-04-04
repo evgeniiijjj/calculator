@@ -13,6 +13,7 @@ public class Calculator {
     public UnaryOperator<Integer> abs = x -> x > 0 ? x : -x;
 
     public Predicate<Integer> isPositive = x -> x > 0;
+    public Predicate<Integer> is0 = x -> x == 0;
 
     public Consumer<String> println = System.out::println;
 }
