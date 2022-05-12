@@ -1,4 +1,7 @@
-import org.junit.jupiter.api.Assertions;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
 public class MainTest {
@@ -10,66 +13,42 @@ public class MainTest {
 
     @Test
     public void successCreateCalculator() {
-        Assertions.assertNotNull(calc);
+        assertThat(calc, notNullValue());
     }
 
     @Test
     public void checkPlusCalc() {
-        int arg1 = 5;
-        int arg2 = 3;
-        int expectedResult = 8;
-        int result = calc.plus.apply(arg1, arg2);
-        Assertions.assertEquals(expectedResult, result);
+        assertThat(calc.plus.apply(5, 3), equalTo(8));
     }
 
     @Test
     public void checkMinusCalc() {
-        int arg1 = 5;
-        int arg2 = 3;
-        int expectedResult = 2;
-        int result = calc.minus.apply(arg1, arg2);
-        Assertions.assertEquals(expectedResult, result);
+        assertThat(calc.minus.apply(5, 3), equalTo(2));
     }
 
     @Test
     public void checkMultiplyCalc() {
-        int arg1 = 5;
-        int arg2 = 3;
-        int expectedResult = 15;
-        int result = calc.multiply.apply(arg1, arg2);
-        Assertions.assertEquals(expectedResult, result);
+        assertThat(calc.multiply.apply(5, 3), equalTo(15));
     }
 
     @Test
     public void checkDivideCalc() {
-        int arg1 = 21;
-        int arg2 = 3;
-        int expectedResult = 7;
-        int result = calc.divide.apply(arg1, arg2);
-        Assertions.assertEquals(expectedResult, result);
+        assertThat(calc.divide.apply(27, 3), equalTo(9));
     }
 
     @Test
     public void checkPowCalc() {
-        int arg = 5;
-        int expectedResult = 25;
-        int result = calc.pow.apply(arg);
-        Assertions.assertEquals(expectedResult, result);
+        assertThat(calc.pow.apply(5), equalTo(25));
     }
 
     @Test
     public void checkAbsCalc() {
-        int arg = -17;
-        int expectedResult = 17;
-        int result = calc.abs.apply(arg);
-        Assertions.assertEquals(expectedResult, result);
+        assertThat(calc.abs.apply(-17), equalTo(17));
     }
 
     @Test
     public void checkDivideException() {
-        int arg1 = 5;
-        int arg2 = 0;
-        Assertions.assertThrows(ArithmeticException.class, () -> calc.divide.apply(arg1, arg2));
+        assertThrows(ArithmeticException.class, () -> calc.divide.apply(5, 0));
     }
 
 }
